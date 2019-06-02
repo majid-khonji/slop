@@ -10,12 +10,12 @@ varying vec2 uvCoord;
 void main()
 {
     // adjustable parameters
-    float circleSize = 128;
-    float borderSize = 2;
+    float circleSize = screenSize[0]/6;
+    float borderSize = screenSize[0];
     // The smaller this value is, the more intense the magnification!
-    float magnifyNerf = 1.1;
+    float magnifyNerf = 10.0;
     vec4 borderColor = vec4(0,0,0,1);
-    bool crosshair = true;
+    bool crosshair = false;
 
     // actual code
     vec2 mUV = vec2(mouse.x, -mouse.y)/screenSize + vec2(0,1);

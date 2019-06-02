@@ -74,6 +74,9 @@ void slop::SlopStart::update( SlopMemory& memory, double dt ) {
         memory.selectedWindow = mouse->hoverWindow;
         memory.setState( (SlopState*)new SlopEndDrag() );
     }
+    //************ edited by Majid ***************
+    mouse->setCursor( 56 );
+    //********************************************
 }
 
 void slop::SlopStart::draw( SlopMemory& memory, glm::mat4 matrix ) {

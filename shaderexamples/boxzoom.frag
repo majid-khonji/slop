@@ -10,12 +10,12 @@ varying vec2 uvCoord;
 void main()
 {
     // Adjustable parameters -------
-    vec2 boxOffset = vec2(-64,-64);
-    vec2 boxSize = vec2(128,128);
-    float magstrength = 5;
-    vec2 borderSize = vec2(1,1);
+    vec2 boxOffset = vec2(-screenSize[0]/4,-screenSize[1]/8);
+    vec2 boxSize = vec2(screenSize[0]/2,screenSize[1]/4);
+    float magstrength = 1;
+    vec2 borderSize = vec2(screenSize[0],screenSize[1]);
     vec4 borderColor = vec4(0,0,0,1);
-    bool crosshair = true;
+    bool crosshair = false;
     //------------------------------
 
     // actual code (don't touch unless you're brave)

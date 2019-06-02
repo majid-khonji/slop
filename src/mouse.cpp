@@ -35,10 +35,23 @@ void slop::Mouse::setCursor( int cursor ) {
         return;
     }
     XFreeCursor( x11->display, xcursor );
+    //============= edited by majid ===============
+    Window window = DefaultRootWindow(x11->display);
+    Cursor invisible_cursor;
+    Pixmap no_pixmap;
+    XColor black;
+    static char nothing[] = { 0, 0, 0, 0, 0, 0, 0, 0 };
+
+    no_pixmap = XCreateBitmapFromData(x11->display, window, nothing, 8, 8);
+    invisible_cursor = XCreatePixmapCursor(x11->display,
+                                           no_pixmap, no_pixmap,
+                                           &black, &black, 0, 0);
+    //XDefineCursor(x11->display, window, xcursor);
     xcursor = XCreateFontCursor( x11->display, cursor );
     XChangeActivePointerGrab( x11->display,
                               PointerMotionMask | ButtonPressMask | ButtonReleaseMask | EnterWindowMask,
-                              xcursor, CurrentTime );
+                              invisible_cursor, CurrentTime );
+    //=============================================
 }
 
 slop::Mouse::Mouse(X11* x11, int nodecorations, Window ignoreWindow ) {
