@@ -1,4 +1,26 @@
 # slop
+
+This is a forked version of Slop tool. This tool helps to reduce distraction when reading in a cluttered screen with redundant graphics and text.
+It basically draws a focal area around the cursor to help focus. Follow the setup steps, as shown under Original README section. Once done, to see a circular focus zone run:
+```bash
+slop -r crosshair
+```
+
+Similarly, for a rectangular shape run:
+
+```bash
+slop -r boxzoom
+```
+
+I recommend using this tool with .i3 window manager with Alt+C and Alt+X shortcuts. To do so, you may add the following lines to ~/.i3/config
+
+```bash
+bindsym $mod+C exec slop -r crosshair
+bindsym $mod+X exec slop -r boxzoom
+```
+
+# Original README
+
 slop (Select Operation) is an application that queries for a selection from the user and prints the region to stdout.
 
 ## Features
@@ -74,14 +96,14 @@ make && sudo make install
 
 Slop allows for chained post-processing shaders. Shaders are written in a language called GLSL, and have access to the following data from slop:
 
-| GLSL Name  | Data Type      | Bound to                                                                                        |
-|------------|----------------|-------------------------------------------------------------------------------------------------|
-| mouse      | vec2           | The mouse position on the screen.                                                               |
-| desktop    | sampler2D      | An upside-down snapshot of the desktop, this doesn't update as the screen changes.              |
+| GLSL Name  | Data Type      | Bound to                                 |
+| ---------- | -------------- | ---------------------------------------- |
+| mouse      | vec2           | The mouse position on the screen.        |
+| desktop    | sampler2D      | An upside-down snapshot of the desktop, this doesn't update as the screen changes. |
 | texture    | sampler2D      | The current pixel values of slop's frame buffer. Usually just contains the selection rectangle. |
-| screenSize | vec2           | The dimensions of the screen, where the x value is the width.                                   |
-| position   | vec2 attribute | This contains the vertex data for the rectangle. Only contains (0,0), (1,0), (1,1), and (0,1).  |
-| uv         | vec2 attribute | Same as the position, this contians the UV information of each vertex.                          |
+| screenSize | vec2           | The dimensions of the screen, where the x value is the width. |
+| position   | vec2 attribute | This contains the vertex data for the rectangle. Only contains (0,0), (1,0), (1,1), and (0,1). |
+| uv         | vec2 attribute | Same as the position, this contians the UV information of each vertex. |
 
 The desktop texture is upside-down because flipping it would cost valuable time.
 
